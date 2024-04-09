@@ -8,7 +8,7 @@ const posts = [
     }
 ];
 
-exports.write = ctx => {
+export const write = ctx => {
     const{title, body} = ctx.request.body;
     postId += 1;
     const post = {id:postId, title, body};
@@ -16,11 +16,11 @@ exports.write = ctx => {
     ctx.body = post;
 };
 
-exports.list = ctx => {
+export const list = ctx => {
     ctx.body = posts;
 }
 
-exports.read = ctx => {
+export const read = ctx => {
     const {id} = ctx.params;
 
     const post = posts.find(p => p.id.toString() === id);
@@ -35,7 +35,7 @@ exports.read = ctx => {
     ctx.body = post;
 };
 
-exports.remove = ctx => {
+export const remove = ctx => {
     const {id} = ctx.params;
 
     const index = posts.findIndex(p => p.id.toString() === id);
@@ -52,7 +52,7 @@ exports.remove = ctx => {
     ctx.status = 204;
 }
 
-exports.replace = ctx => {
+export const replace = ctx => {
     const {id} = ctx.params;
 
     const index = posts.findIndex(p => p.id.toString() === id);
@@ -72,7 +72,7 @@ exports.replace = ctx => {
     ctx.body = posts[index];
 };
 
-exports.update = ctx => {
+export const update = ctx => {
     const {id} = ctx.params;
 
     const index = posts.findIndex(p => p.id.toString() === id);
