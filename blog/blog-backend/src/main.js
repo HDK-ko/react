@@ -4,18 +4,20 @@ import Router from 'koa-router';
 import bodyParser from 'koa-bodyparser';
 import mongoose from 'mongoose'
 
+import api from './api';
+import createFakeData from './createFakeData';
+
 const {PORT, MONGO_URI} = process.env;
 
 mongoose
 .connect(MONGO_URI, { useNewUrlParser: true, useFindAndModify:false})
 .then(() => {
     console.log('Connected to MongoDB');
+    createFakeData();
 })
 .catch(e => {
     console.error(e);
 })
-
-import api from './api';
 
 const app = new Koa();
 const router = new Router();
