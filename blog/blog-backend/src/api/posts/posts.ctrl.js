@@ -22,6 +22,8 @@ export const write = async ctx => {
         .required(),
     });
 
+    console.log(schema);
+
     const result = schema.validate(ctx.request.body);
     if(result.error) {
         ctx.status = 400;
@@ -34,6 +36,7 @@ export const write = async ctx => {
         title,
         body,
         tags,
+        user:ctx.state.user
     });
     try {
         await post.save();
